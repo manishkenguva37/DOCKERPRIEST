@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Platform Admin Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f5993d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#181411] dark:text-white min-h-screen pb-20">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#e6e0db] dark:border-[#3d2e1f]">
+<div class="flex items-center p-4 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary" data-icon="Dashboard">
+<span class="material-symbols-outlined text-3xl">dashboard</span>
+</div>
+<h1 class="text-lg font-bold leading-tight tracking-tight">Platform Admin</h1>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="Professional portrait of an administrative user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXTAMN9Ms8x6ULRgFzsnll-xAbgcELP0S3-1Y6covhb7EX34zX1vw3G38wNbVpBhiBisDtoUE0CHb_XLXvJW_oOKHf9w9PLTThJTAYvheB7HG45u9V-7tpr5iruMtPCiLGAxYhpj0YRD1H3WiXcrvOGixmfseF0NzHB0p4JJ0r_QrhBA6pk-FASeF1lg3aVfzxQMvt3kO9WLME05VWTK4iaH3SGt8Io-NF2bOHqnRQHdA5CJnLJUa2tXJ8HYiBrXVAiWyL0kOAvdfV"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto p-4 space-y-6">
+<!-- Quick Stats Stats Row -->
+<section class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1 rounded-xl p-4 border border-[#e6e0db] dark:border-[#3d2e1f] bg-white dark:bg-[#2c2218]">
+<p class="text-[#8a7560] dark:text-gray-400 text-xs font-medium">Total Bookings</p>
+<div class="flex items-end gap-2">
+<p class="text-2xl font-bold">1,240</p>
+<span class="text-[#07880e] text-xs font-bold mb-1">+12%</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-4 border border-[#e6e0db] dark:border-[#3d2e1f] bg-white dark:bg-[#2c2218]">
+<p class="text-[#8a7560] dark:text-gray-400 text-xs font-medium">Active Priests</p>
+<div class="flex items-end gap-2">
+<p class="text-2xl font-bold">85</p>
+<span class="text-[#07880e] text-xs font-bold mb-1">+5%</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-4 border border-[#e6e0db] dark:border-[#3d2e1f] bg-white dark:bg-[#2c2218]">
+<p class="text-[#8a7560] dark:text-gray-400 text-xs font-medium">Revenue</p>
+<div class="flex items-end gap-2">
+<p class="text-2xl font-bold">₹12.5L</p>
+<span class="text-primary text-xs font-bold mb-1">+18%</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-4 border border-[#e6e0db] dark:border-[#3d2e1f] bg-white dark:bg-[#2c2218]">
+<p class="text-[#8a7560] dark:text-gray-400 text-xs font-medium">Campaign ROI</p>
+<div class="flex items-end gap-2">
+<p class="text-2xl font-bold">4.2x</p>
+<span class="text-[#07880e] text-xs font-bold mb-1">High</span>
+</div>
+</div>
+</section>
+<!-- Reports & Booking Trends -->
+<section class="bg-white dark:bg-[#2c2218] rounded-xl p-5 border border-[#e6e0db] dark:border-[#3d2e1f]">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold">Booking Trends</h2>
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded font-bold">LAST 30 DAYS</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<p class="text-3xl font-bold">450</p>
+<div class="flex flex-col">
+<p class="text-[#07880e] text-sm font-bold leading-none">↑ 8.2%</p>
+<p class="text-[#8a7560] text-[10px] uppercase">vs prev month</p>
+</div>
+</div>
+<div class="h-32 w-full mt-4">
+<svg fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z" fill="url(#trend-gradient)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#f5993d" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="trend-gradient" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#f5993d" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#f5993d" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="flex justify-between mt-2">
+<p class="text-[#8a7560] text-[10px] font-bold">WEEK 1</p>
+<p class="text-[#8a7560] text-[10px] font-bold">WEEK 2</p>
+<p class="text-[#8a7560] text-[10px] font-bold">WEEK 3</p>
+<p class="text-[#8a7560] text-[10px] font-bold">WEEK 4</p>
+</div>
+</section>
+<!-- Manage Priests -->
+<section>
+<div class="flex justify-between items-end mb-3">
+<h2 class="text-xl font-bold">Manage Priests</h2>
+<button class="text-primary text-sm font-bold">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Priest Card 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#2c2218] p-4 rounded-xl border border-[#e6e0db] dark:border-[#3d2e1f]">
+<div class="size-12 rounded-full overflow-hidden shrink-0">
+<img alt="Priest Profile" class="w-full h-full object-cover" data-alt="Dignified man in traditional Vedic attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU-ACNNVD6_1b6jCPYMO2W4ydeN_dwCJw_hk_BNDDZFFd_vfRavveDz8WMGOvHHmQ6DhUNbQOL7BsMsejAuulNAxtNKoxreEYq6NVfXqjSN3v5JDq5qaAWs_FZNQsDs6snJHBes1meVMFAmzcp9l3AI-npwFOcqI9jWwin00_UyRnIKo_hKFu1-JGWHiT07-JJ_wyiZas__wKxn9oNt1eu251UdmKj1j_7cG7nAHqDwKVWARkUWZirTXZAXk7Ol3mXD9R4BDKdOCWn"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-base truncate">Pandit Rajesh Sharma</p>
+<p class="text-xs text-[#8a7560] dark:text-gray-400">Vedic Rituals • Varanasi</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-[10px] font-bold bg-[#e8f5e9] text-[#2e7d32] px-2 py-0.5 rounded-full">ACTIVE</span>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs">star</span>
+<span class="text-xs font-bold ml-1">4.9</span>
+</div>
+</div>
+</div>
+<!-- Priest Card 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-[#2c2218] p-4 rounded-xl border border-[#e6e0db] dark:border-[#3d2e1f]">
+<div class="size-12 rounded-full overflow-hidden shrink-0">
+<img alt="Priest Profile" class="w-full h-full object-cover" data-alt="Middle-aged man smiling warmly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtRH3SP0IgggNlSheWKMLy0ZgpTU90fhX_RLX2TKHsw3vQJXEl7rRq-hPPtmIjtAz-3lRRk9ytiVmf_T-dIwKRw_DfP55jdLIMvDxtH7MH0qRgS-MaVgSRwnB9dhxVAb4ui9pglOXEFIj0_CBgsiL5-kyYAbNY-wyV79cgFUnJSfQfilw2JHPKo1H_gyj-18X2HSEX8HdIQjDBJ0G14y4CsN3G5V5dQKZLN-X6VrDT3awSfcVLMmCqnYBgfZmF9FFAf9x-yQdHbJ3n"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-base truncate">Acharya Anil Kumar</p>
+<p class="text-xs text-[#8a7560] dark:text-gray-400">Vastu Shastra • Haridwar</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-[10px] font-bold bg-[#fff3e0] text-[#ef6c00] px-2 py-0.5 rounded-full">PENDING</span>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs">star</span>
+<span class="text-xs font-bold ml-1">4.7</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 rounded-lg border-2 border-dashed border-[#e6e0db] dark:border-[#3d2e1f] text-[#8a7560] font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                    Add New Priest
+                </button>
+</div>
+</section>
+<!-- Manage Pujas -->
+<section>
+<h2 class="text-xl font-bold mb-3">Popular Pujas</h2>
+<div class="grid grid-cols-1 gap-3">
+<div class="bg-white dark:bg-[#2c2218] p-4 rounded-xl border border-[#e6e0db] dark:border-[#3d2e1f] flex justify-between items-center">
+<div>
+<p class="font-bold">Griha Pravesh Puja</p>
+<p class="text-xs text-[#8a7560]">Duration: 3-4 Hours</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">₹5,100</p>
+<button class="text-[10px] font-bold text-gray-400 underline uppercase">Edit Rate</button>
+</div>
+</div>
+<div class="bg-white dark:bg-[#2c2218] p-4 rounded-xl border border-[#e6e0db] dark:border-[#3d2e1f] flex justify-between items-center">
+<div>
+<p class="font-bold">Satyanarayan Katha</p>
+<p class="text-xs text-[#8a7560]">Duration: 2 Hours</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">₹2,500</p>
+<button class="text-[10px] font-bold text-gray-400 underline uppercase">Edit Rate</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Festival Campaign Performance -->
+<section class="pb-8">
+<h2 class="text-xl font-bold mb-3">Campaign Performance</h2>
+<div class="bg-gradient-to-br from-primary to-[#d37a1f] p-5 rounded-2xl text-white">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-white/80 text-xs font-bold uppercase tracking-wider">Active Campaign</p>
+<h3 class="text-xl font-bold">Diwali Special 2024</h3>
+</div>
+<span class="bg-white/20 px-2 py-1 rounded text-[10px] font-bold">LIVE</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Target Bookings</span>
+<span>842 / 1000</span>
+</div>
+<div class="w-full bg-black/10 rounded-full h-2">
+<div class="bg-white h-full rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-white/10 p-3 rounded-lg">
+<p class="text-[10px] font-medium opacity-80 uppercase">Impressions</p>
+<p class="text-lg font-bold">124.5k</p>
+</div>
+<div class="bg-white/10 p-3 rounded-lg">
+<p class="text-[10px] font-medium opacity-80 uppercase">Conversion</p>
+<p class="text-lg font-bold">3.2%</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-[#e6e0db] dark:border-[#3d2e1f] px-6 py-2 pb-6 z-50">
+<div class="max-w-md mx-auto flex justify-between items-center">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#8a7560] dark:text-gray-400">
+<span class="material-symbols-outlined">person_pin_circle</span>
+<span class="text-[10px] font-bold">Priests</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#8a7560] dark:text-gray-400">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-bold">Bookings</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#8a7560] dark:text-gray-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</button>
+</div>
+</nav>
+</body></html>

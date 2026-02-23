@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Festival Special Bookings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f5993d",
+                        "maroon": "#800000",
+                        "background-light": "#fcfaf8",
+                        "background-dark": "#221910",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .ios-blur { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display">
+<!-- Sticky Header -->
+<div class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 ios-blur flex items-center p-4 border-b border-gray-100 dark:border-gray-800">
+<div class="text-[#181411] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h1 class="text-[#181411] dark:text-white text-lg font-bold flex-1 text-center pr-10">Festival Specials</h1>
+</div>
+<main class="max-w-md mx-auto pb-24">
+<!-- Hero Section -->
+<div class="relative w-full aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Intricate golden Ganpati idol with festive lighting" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlR7NTWgYek-ZgVIZPNHD8iJ2myVU1z0MYY37gTR4gM90-HmFbJYGrQdRm5FIfrNYErygUSJcSOWkUzjUsJIndXJ6AR-1EcAKqirudIrsY_tCunbn6aauu6gGVJnhWJn2t2fRVsUNYto4ng4Z93mWcQ2e3OJmQLU-eGb_qrS6VJjbNg7SEMtwKAy1vvwR7YNyXwDCuTT87BIOxEnCi4b6Ubno8DR7EEeOSr0eG3Z_1bljXFqWxjFwVBJBYYMVwOHbUgaoVb4bbz9Op')">
+</div>
+<div class="absolute bottom-0 left-0 p-6">
+<div class="bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Trending Festival</div>
+<h2 class="text-white text-3xl font-bold leading-tight">Ganesh Chaturthi <br/>2024 Specials</h2>
+<p class="text-white/80 text-sm mt-1">Invoke blessings with certified Vedic Priests</p>
+</div>
+</div>
+<!-- Countdown Timer Section -->
+<div class="mx-4 -mt-8 relative z-10 bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-5 border border-primary/10">
+<div class="text-center mb-4">
+<span class="text-maroon dark:text-primary font-bold text-xs uppercase tracking-widest">Shubh Muhurta Countdown</span>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-1 flex-col items-center gap-1">
+<div class="w-full h-14 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+<p class="text-primary text-2xl font-bold">04</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-[10px] font-medium uppercase">Days</p>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1">
+<div class="w-full h-14 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+<p class="text-primary text-2xl font-bold">12</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-[10px] font-medium uppercase">Hours</p>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1">
+<div class="w-full h-14 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+<p class="text-primary text-2xl font-bold">45</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-[10px] font-medium uppercase">Mins</p>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1">
+<div class="w-full h-14 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+<p class="text-primary text-2xl font-bold">30</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-[10px] font-medium uppercase">Secs</p>
+</div>
+</div>
+</div>
+<!-- Booking Type Toggle -->
+<div class="px-4 pt-8">
+<div class="bg-gray-100 dark:bg-zinc-800 p-1 rounded-xl flex gap-1">
+<button class="flex-1 py-2.5 px-4 rounded-lg bg-white dark:bg-zinc-700 shadow-sm text-sm font-bold text-primary transition-all">
+                    Individual Puja
+                </button>
+<button class="flex-1 py-2.5 px-4 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-white/50 transition-all">
+                    Group Rituals
+                </button>
+</div>
+</div>
+<!-- Section Title -->
+<div class="px-4 pt-8 pb-4 flex items-center justify-between">
+<h3 class="text-xl font-bold text-maroon dark:text-primary">Featured Rituals</h3>
+<span class="text-primary text-xs font-bold uppercase cursor-pointer">View All</span>
+</div>
+<!-- Ritual Cards -->
+<div class="px-4 space-y-4">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm flex">
+<div class="w-24 h-full min-h-[120px] bg-cover bg-center" data-alt="Vibrant flowers and traditional puja thali" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAx7pdXpL8uga9xZlfG1DkHa60ZG1H2OanGlWdGyoH-GeZwS_BoE4kjnRQoWZWE57lassjrZzbCqyJIsPxZ70lbk9aWgk1oVxTjnharhy33k3XfsXZh4jwqoOuBQbFK7peZZYUHFPTjJZ-j1dIX0hE3fLR6CHxMvWcNiNsWf4Z6mxkPqVWqu2rooRzXVAwFyVFVQwX6UnOvshmBYX7QoWkRq7g9e3nmN1enznW8LusPTe2FwVrIocr-_pGpowcTzD4VLyBlDm9em_GF')">
+</div>
+<div class="flex-1 p-4 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-[#181411] dark:text-white leading-tight">Ganesh Prana Pratishtha</h4>
+<span class="text-primary flex items-center gap-1 text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span> 4.9
+                            </span>
+</div>
+<p class="text-xs text-gray-500 mt-1">Complete installation with Vedic mantras</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-600 dark:text-gray-400">90 Mins</span>
+<span class="text-[10px] bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-600 dark:text-gray-400">All Samagri Incl.</span>
+</div>
+</div>
+<div class="flex justify-between items-center mt-3">
+<span class="text-maroon dark:text-primary font-bold">₹2,499</span>
+<button class="bg-primary/10 text-primary text-xs font-bold px-3 py-1.5 rounded-lg border border-primary/20">Add</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm flex">
+<div class="w-24 h-full min-h-[120px] bg-cover bg-center" data-alt="Incense sticks and spiritual ritual items" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD42jEyPJa2-c8vMGF-t5F1zpYPvQ80XM9C0i5pXGDscX4xE21eLGjeiNF23AvkK1HXBhPz5nojpAMrrYNdDfjUnYe-2VUqaU9v3JUBp7G6znfrGhE-cWRnxDeptatgQtw9e2cJLc1yRlq-xJsT2NgX2bdAmdt8etruHTalTE962tL_2h6YFrCZ-2YHIT9dIvhgoRxPaEibvEYlrPNrd_td_DF111ntUQTnfIy0aCYPUV-JqU4ezvGfbqLvHIjQ3bmraXTDfM_o3uDi')">
+</div>
+<div class="flex-1 p-4 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-[#181411] dark:text-white leading-tight">Maha Aarti &amp; Bhog</h4>
+<span class="text-primary flex items-center gap-1 text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span> 4.8
+                            </span>
+</div>
+<p class="text-xs text-gray-500 mt-1">Evening grand ritual with community</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-gray-600 dark:text-gray-400">45 Mins</span>
+<span class="text-[10px] bg-primary/20 px-2 py-0.5 rounded text-primary font-bold">5 slots left</span>
+</div>
+</div>
+<div class="flex justify-between items-center mt-3">
+<span class="text-maroon dark:text-primary font-bold">₹799</span>
+<button class="bg-primary/10 text-primary text-xs font-bold px-3 py-1.5 rounded-lg border border-primary/20">Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Community Banner -->
+<div class="px-4 pt-8">
+<div class="bg-maroon rounded-xl p-6 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="text-white font-bold text-xl mb-2">Samuhik Ganesh Yagna</h4>
+<p class="text-white/80 text-xs mb-4 max-w-[200px]">Join 100+ families in a powerful community ritual for collective prosperity.</p>
+<button class="bg-white text-maroon text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2">
+                        Explore Group Deals
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="absolute right-0 bottom-0 opacity-20">
+<span class="material-symbols-outlined text-[120px] text-white" style="font-variation-settings: 'FILL' 1">groups</span>
+</div>
+</div>
+</div>
+<!-- Priest Highlight -->
+<div class="px-4 pt-10 pb-6">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                Certified Vedic Priests
+            </h3>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<div class="min-w-[140px] text-center">
+<div class="w-16 h-16 mx-auto rounded-full bg-cover bg-center mb-2 border-2 border-primary/30" data-alt="Portrait of an experienced Vedic priest" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDl7_ENxszU1ccZhJVUDCZMoG6pE-CTSd75XuZOezxTh84SdvsZbW5xwYyhSjLMpXKkrDZJWrEhKh1wsMjGyeG7JconG-gE9NOoNDGuO4L8RM4HqrR86Nj-MtPvDH0MbyF6B7WX7bLMZthHh70O6xZ2HumZW2Vc6HDDiJqiO0bA8WPF421o_R-f49_tzzZ3p1tm5VEL60PyUmL8FasZRaqOV5Lb_vmQ2y3kgb6ah5pbiwO9d22v-jveL5P8Zy0Md_1IpfmlVqUFkGx9')"></div>
+<p class="text-sm font-bold text-[#181411] dark:text-white">Pt. Sharma</p>
+<p class="text-[10px] text-gray-500">15+ Yrs Exp.</p>
+</div>
+<div class="min-w-[140px] text-center">
+<div class="w-16 h-16 mx-auto rounded-full bg-cover bg-center mb-2 border-2 border-primary/30" data-alt="Portrait of a Vedic scholar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0IPmNMFPjj6zkfPFHjSB58a3A935oVw49ExTMyRAwvkaNdiz6DBrLvwSLpWiM9Mdmxn2eb7gYemY3zsenjN_C0Jq5_FPrQ6Db0vaxPEBihnnH5ZuH0Scnno2TthMMT3TdzovtEoAysjOYoeIw3_7adM_WSqOxoP_aZ57T3egar08JV2wQkNC70o46NNJIAB3eJjyvI73tkrwo2DmfxDweMhS56kCK85LdODYzX8RT_EiD_3aC_d0MIYs1QI-yMcG5BD81bx28hMJ9')"></div>
+<p class="text-sm font-bold text-[#181411] dark:text-white">Pt. Shastri</p>
+<p class="text-[10px] text-gray-500">Gold Medalist</p>
+</div>
+<div class="min-w-[140px] text-center">
+<div class="w-16 h-16 mx-auto rounded-full bg-cover bg-center mb-2 border-2 border-primary/30" data-alt="Portrait of a priest with traditional tilak" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuWBbWNFhSfgXNgF_kg8ZNzaLH7YyUzqUt4PiaBjHAciLIH3vmMDNoteES1_PjSZUSc2TdLxInyMLrRm9khGK9YJKdS65CIoUHOqXiDem83hCXyJVT7rEhXcvE2o5ymSe7LoTeXe1pEYDLxi5opfVdNEtXd9mgbstjBdQKn8auBGIgo1O1CKGJ0LvdIW4d4XrN5JOPJaDGxetsaOtpOdPkDU-9TklYtrUobs0BQvDzL6Jyd7azviNEmVVRpfc4b3iCTNwvFHGRAhMt')"></div>
+<p class="text-sm font-bold text-[#181411] dark:text-white">Pt. Dwivedi</p>
+<p class="text-[10px] text-gray-500">Vedic Scholar</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Footer -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 ios-blur border-t border-gray-100 dark:border-zinc-800 p-4 z-50">
+<div class="max-w-md mx-auto flex items-center justify-between gap-4">
+<div>
+<p class="text-[10px] uppercase text-gray-500 font-bold tracking-tight">Booking Summary</p>
+<p class="text-lg font-bold text-maroon dark:text-primary">1 Ritual Selected</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-primary/30 transition-all flex items-center gap-2">
+                Book Now
+                <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</button>
+</div>
+</div>
+</body></html>

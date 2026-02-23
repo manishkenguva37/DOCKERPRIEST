@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Devotee Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f5993d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-neutral-900 shadow-sm px-4 py-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 shrink-0 rounded-full bg-cover bg-center border-2 border-primary" data-alt="User profile photo of a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAuHnzqhfNNdPqlJyQOG4orqTXz4cKrq3VAaN8SU-570EVWy8D3o0yzHrlaXVTZfp5TvGN8gzNRkM2OvqPGCbMx4z4RTbHdO8ATLziL-32O_4KUXKCgxzE1uELQ3xzLvqonQ7S4JsJzurCYcESpcBRFb7CMIVcKT9LAnIJJQzlRW4HcvXt0iSLSGSsM2aWbzQI5RusbzBmWk_c-Zn0O6jnil73fwHWDk9rOvE3gG1bITAR8BXi8yO9unFO_DfwxKYtHAczP9F2bowy1')"></div>
+<div>
+<p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Namaste,</p>
+<h2 class="text-[#181411] dark:text-white text-lg font-bold leading-tight">Rajesh Sharma</h2>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 relative">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-neutral-900"></span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Segmented Control -->
+<div class="px-4 py-6">
+<div class="flex h-12 w-full items-center justify-center rounded-xl bg-neutral-200/50 dark:bg-neutral-800 p-1">
+<label class="flex h-full flex-1 cursor-pointer items-center justify-center rounded-lg px-2 transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-neutral-700 has-[:checked]:shadow-sm text-neutral-500 dark:text-neutral-400 has-[:checked]:text-primary font-semibold text-sm">
+<span>Upcoming</span>
+<input checked="" class="hidden" name="booking-tab" type="radio"/>
+</label>
+<label class="flex h-full flex-1 cursor-pointer items-center justify-center rounded-lg px-2 transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-neutral-700 has-[:checked]:shadow-sm text-neutral-500 dark:text-neutral-400 has-[:checked]:text-primary font-semibold text-sm">
+<span>Past</span>
+<input class="hidden" name="booking-tab" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Upcoming Section -->
+<section class="px-4 mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-[#181411] dark:text-white text-xl font-bold tracking-tight">Your Rituals</h3>
+<span class="text-sm font-medium text-primary">View Calendar</span>
+</div>
+<!-- Main Booking Card -->
+<div class="bg-white dark:bg-neutral-900 rounded-2xl shadow-md overflow-hidden border border-neutral-100 dark:border-neutral-800">
+<div class="relative h-48 w-full bg-cover bg-center" data-alt="Traditional Ganesh Puja setup with flowers and idol" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2sPTVedQlCBAHiTMciaw_4OMdlH9kidiO4kBflZhdskkIBjxqWQ5s4lOO9xUyw7E5f4v-R8_SYZaEyQvp8yDi7mF48S67Afy0aBieAvbxWpb8PMMOIefOPK2Yn3JZDS560PlIoiQLuz_zDfScl3fzbJQbXytCggBhbABKCrqw7nWblDzWdaGcO17fTSX0Ipjq_ZSSNA8JhduN3W-rg06ycRndxE2xcJuYZXX6rsInhGpDwGDuEFiZJJRw2Pn2ioJ6q1vwISGraJCZ')">
+<div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">
+                        Confirmed
+                    </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="text-xl font-bold text-neutral-900 dark:text-white">Ganesh Chaturthi Puja</h4>
+<p class="text-neutral-500 dark:text-neutral-400 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                                At Home • 2.5 Hours
+                            </p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-lg">Oct 24</p>
+<p class="text-neutral-400 text-xs font-medium">10:30 AM</p>
+</div>
+</div>
+<hr class="border-neutral-100 dark:border-neutral-800 my-4"/>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Portrait of Pandit Arjun Sharma" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-O-qvEE9cy0Uwc86eRlhsNk7saaWn8V7ahyDe6aPZwMkEIe1wafrux87QySEbfNQdUiqADG4ARoSEPdp4qOLxgILyTRVIET-aRf20_xWcRrTrCcef5M5wibEV2EUtr0CPxCOxorXr__IcYAkf8hBjNeaM-2ITJCZW-7jjxo60nN55zLYUW2n4bb_CLaCL0BWS6yC62hsFqzk0gDxNT_zzzCunmsxTW1t70OElsuuaDQYVkX2pw3P2VT315D6tLHfUfjMZR3wgxOZz')"></div>
+<div>
+<p class="text-sm font-bold text-neutral-800 dark:text-neutral-200">Pandit Arjun Sharma</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
+<span class="text-xs text-neutral-500">4.9 (120 reviews)</span>
+</div>
+</div>
+</div>
+<button class="bg-primary/10 dark:bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+                            Chat
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Instructions Section -->
+<section class="px-4 mb-8">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-5 border-2 border-dashed border-primary/30">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">description</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-neutral-900 dark:text-white mb-1">Ritual Preparation</h4>
+<p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4">Download the full list of samagri and preparation steps for your upcoming Puja.</p>
+<button class="w-full bg-primary text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                            Download Puja Instructions
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Past Bookings -->
+<section class="px-4 mb-12">
+<h3 class="text-[#181411] dark:text-white text-lg font-bold mb-4">Recent Rituals</h3>
+<div class="space-y-3">
+<!-- Past Item 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-neutral-900 p-3 rounded-xl border border-neutral-100 dark:border-neutral-800">
+<div class="size-14 rounded-lg bg-cover bg-center" data-alt="Close up of incense and oil lamp" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUMmOsy8dJG0TIjKg4TiJlBRXSuR95DfIBoen1FYQNVYtOVkgRmDaCNRaxDe2Fs8VHJM6GzPQFROP5U_wLM7NRMaxI7k2O0VS9LJtoG7KOkXHRPFgVROgGAlwvFdvSIdBh7-_XPz88nS6Xg5azjNVz6fcg-3OfhM7oXyGou6og5Jt5CAKUlTu5AEc8NVbtEaF3N-tnNSs1s1Xj-aPGYAZNFK4mJYFF-zsC6IOGe45PlQqWFVY9Mr0aQpKL5TqSAJIObUSI2FCl1WMA')"></div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-neutral-800 dark:text-neutral-200">Satyanarayan Katha</h5>
+<p class="text-xs text-neutral-500">Completed on Sep 12</p>
+</div>
+<button class="text-primary text-xs font-bold border border-primary/50 px-3 py-1.5 rounded-lg">Rebook</button>
+</div>
+<!-- Past Item 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-neutral-900 p-3 rounded-xl border border-neutral-100 dark:border-neutral-800">
+<div class="size-14 rounded-lg bg-cover bg-center shadow-inner" data-alt="Traditional Indian temple architecture detail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV0baUfm1_3lP8qwXbowL8zM0HN8C5EkRAncmo1_j8G0cKMuYQnuWDQHvx13i4zaRG3MXkmGFjZ2WOqBSFzfcLlwYslXRIsohxTCS_2beNlCmCehGDsRqRAC5goKTUHgVmEu_lxDHH6YN0xVtbwmhHNQu4ZzEZ7eoZAdEd-rGXsTB0aEACL-5p8uOYBHv2vnxoyVxULgtnRX-THPGoUxbWl3S5P7BHqmAAe972QwUQgoqzLgV_e3zB44q59VUMuUXUqA5Rdfmz3RBY')"></div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-neutral-800 dark:text-neutral-200">Vastu Shanti Puja</h5>
+<p class="text-xs text-neutral-500">Completed on Aug 28</p>
+</div>
+<button class="text-primary text-xs font-bold border border-primary/50 px-3 py-1.5 rounded-lg">Rebook</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-900 border-t border-neutral-100 dark:border-neutral-800 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-1">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[10px] font-medium">Rituals</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-[10px] font-medium">Bookings</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</body></html>
