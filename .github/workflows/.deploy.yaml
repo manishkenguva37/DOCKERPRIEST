@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Build Docker image from repo root
+      # 2️⃣ Build Docker image (optional, for local testing or custom use)
       - name: Build Docker Image
         run: docker build -t book-priest .
 
@@ -27,12 +27,12 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # 4️⃣ Pull Vercel project settings (from book_priest folder if project files are there)
+      # 4️⃣ Pull Vercel project settings
       - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
         working-directory: ./book_priest
 
-      # 5️⃣ Deploy to Vercel using the prebuilt Docker image
+      # 5️⃣ Deploy to Vercel (let Vercel build automatically)
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+        run: vercel deploy --prod --token=$VERCEL_TOKEN
         working-directory: ./book_priest
