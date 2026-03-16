@@ -15,4 +15,7 @@ RUN npm install
 
 # CMD ["npm","run","dev","--","--host"]
 
-RUN npm rub build
+RUN npm run build
+
+
+
