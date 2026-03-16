@@ -21,27 +21,39 @@ jobs:
       - name: Build Docker Image
         run: docker build -t book-priest-builder .
 
-      - name: Prepare output directory on host (helps permissions)
-        run: mkdir -p .vercel/output
-
-      - name: Run Build inside Docker
+      - name: Create container to extract artifacts from
+        id: create_container
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/app \
-            --user $(id -u):$(id -g) \
-            book-priest-builder
+          CONTAINER_ID=$(docker create --name temp-builder book-priest-builder)
+          echo "CONTAINER_ID=$CONTAINER_ID" >> $GITHUB_OUTPUT
 
-      - name: Debug – Show .vercel/output on host
+      - name: Run build inside container (no volume needed for build)
+        run: |
+          docker start ${{ steps.create_container.outputs.CONTAINER_ID }}
+          docker exec ${{ steps.create_container.outputs.CONTAINER_ID }} sh -c "
+            cd /app/book_priest &&
+            npm run build
+          " || { echo "Build failed inside container"; exit 1; }
+
+      - name: Extract dist/ from container to host
+        run: |
+          mkdir -p .vercel/output
+          docker cp ${{ steps.create_container.outputs.CONTAINER_ID }}:/app/book_priest/dist/. .vercel/output/
+          ls -la .vercel/output || echo "Copy failed – nothing in output!"
+
+      - name: Cleanup temporary container
+        if: always()
+        run: docker rm -f ${{ steps.create_container.outputs.CONTAINER_ID }}
+
+      - name: Debug output contents
         run: |
           pwd
-          ls -la .vercel || echo ".vercel missing!"
-          ls -la .vercel/output || echo "output folder missing!"
-          find .vercel/output -type f | head -n 30 || true
-          du -sh .vercel/output 2>/dev/null || echo "Size 0 or missing"
+          ls -la .vercel/output
+          find .vercel/output -type f | head -n 20
+          du -sh .vercel/output || echo "Empty!"
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
       - name: Deploy Prebuilt to Vercel (Production)
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        # Runs from repo root → finds .vercel/output automatically
