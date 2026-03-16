@@ -3,32 +3,29 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy both folders from monorepo-style structure
+# Copy both projects
 COPY artiqui /app/artiqui
 COPY book_priest /app/book_priest
 
-# ───────────────────────────────────────
-# Build artiqui (shared lib / dependency?)
-# ───────────────────────────────────────
+# Build artiqui first (assuming it's a dependency / shared lib)
 WORKDIR /app/artiqui
-RUN npm ci --frozen-lockfile
+RUN npm ci --frozen-lockfile --prefer-offline
 RUN npm run build
 
-# ───────────────────────────────────────
-# Build book_priest (the actual app to deploy)
-# ───────────────────────────────────────
+# Build book_priest (the deployable app)
 WORKDIR /app/book_priest
-RUN npm ci --frozen-lockfile
+RUN npm ci --frozen-lockfile --prefer-offline
 RUN npm run build
 
-# ───────────────────────────────────────
-# Create .vercel/output at WORKSPACE ROOT (/app)
-# so it appears at github.workspace/.vercel/output after volume mount
-# ───────────────────────────────────────
-RUN mkdir -p /app/.vercel/output
-RUN cp -r dist/* /app/.vercel/output/ || echo "Warning: no dist/ folder found – check your build output path"
+# Debug: show what was built
+RUN ls -la dist/ || echo "dist/ folder missing or empty after build!"
 
-# Optional – if your build outputs somewhere else, adjust cp, e.g.:
-# RUN cp -r .next/* /app/.vercel/output/   ← for Next.js
-# or
-# RUN cp -r build/* /app/.vercel/output/   ← for Create React App / Vite etc.
+# Create .vercel/output at WORKSPACE ROOT (/app)
+# → lands at ${{ github.workspace }}/.vercel/output on host
+RUN mkdir -p /app/.vercel/output
+
+# Copy build output (Vite → dist/)
+RUN cp -r dist/* /app/.vercel/output/ || { echo "ERROR: cp failed – dist/ missing!"; exit 1; }
+
+# Final debug inside container
+RUN ls -la /app/.vercel/output || echo "Output folder empty inside container"

@@ -1,4 +1,4 @@
-name: Build & Deploy Book Priest with Docker
+name: Build & Deploy Book Priest with Docker to Vercel
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  VERCEL_ORG_ID:    ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  VERCEL_TOKEN:     ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 jobs:
   build-and-deploy:
@@ -21,18 +21,27 @@ jobs:
       - name: Build Docker Image
         run: docker build -t book-priest-builder .
 
-      - name: Run Build inside Docker (creates .vercel/output at root)
+      - name: Prepare output directory on host (helps permissions)
+        run: mkdir -p .vercel/output
+
+      - name: Run Build inside Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/app \
+            --user $(id -u):$(id -g) \
             book-priest-builder
 
-      - name: Verify .vercel/output exists
-        run: ls -la .vercel/output || echo "Folder missing – build failed!"
+      - name: Debug – Show .vercel/output on host
+        run: |
+          pwd
+          ls -la .vercel || echo ".vercel missing!"
+          ls -la .vercel/output || echo "output folder missing!"
+          find .vercel/output -type f | head -n 30 || true
+          du -sh .vercel/output 2>/dev/null || echo "Size 0 or missing"
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
       - name: Deploy Prebuilt to Vercel (Production)
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        # ^ runs from repo root → sees .vercel/output correctly
+        # Runs from repo root → finds .vercel/output automatically
