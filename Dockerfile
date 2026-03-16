@@ -1,31 +1,34 @@
-# Use Node 18 Alpine for small size
+# Use Node 18 Alpine – small & fast
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy both projects
+# Copy both folders from monorepo-style structure
 COPY artiqui /app/artiqui
 COPY book_priest /app/book_priest
 
-# -------------------------------
-# Build artiqui
-# -------------------------------
+# ───────────────────────────────────────
+# Build artiqui (shared lib / dependency?)
+# ───────────────────────────────────────
 WORKDIR /app/artiqui
-RUN npm ci
+RUN npm ci --frozen-lockfile
 RUN npm run build
 
-# -------------------------------
-# Build book_priest
-# -------------------------------
+# ───────────────────────────────────────
+# Build book_priest (the actual app to deploy)
+# ───────────────────────────────────────
 WORKDIR /app/book_priest
-RUN npm ci
+RUN npm ci --frozen-lockfile
 RUN npm run build
 
-# -------------------------------
-# Copy output to .vercel/output for prebuilt deploy
-# -------------------------------
-RUN mkdir -p .vercel/output && cp -r dist/* .vercel/output/
+# ───────────────────────────────────────
+# Create .vercel/output at WORKSPACE ROOT (/app)
+# so it appears at github.workspace/.vercel/output after volume mount
+# ───────────────────────────────────────
+RUN mkdir -p /app/.vercel/output
+RUN cp -r dist/* /app/.vercel/output/ || echo "Warning: no dist/ folder found – check your build output path"
 
-# Optional: local dev
-# EXPOSE 5173
-# CMD ["npm","run","dev","--","--host"]
+# Optional – if your build outputs somewhere else, adjust cp, e.g.:
+# RUN cp -r .next/* /app/.vercel/output/   ← for Next.js
+# or
+# RUN cp -r build/* /app/.vercel/output/   ← for Create React App / Vite etc.
