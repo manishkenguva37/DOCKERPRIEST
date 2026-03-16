@@ -1,0 +1,20 @@
+name: BUILD DOCKER IMAGES
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Compose
+        run: docker compose build
+
+      - name: Run Docker Compose
+        run: docker compose up -d
