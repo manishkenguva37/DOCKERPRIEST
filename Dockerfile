@@ -11,6 +11,8 @@ RUN npm run build
 WORKDIR /book_priest
 RUN npm install
 
-EXPOSE 5173
+# EXPOSE 5173
 
-CMD ["npm","run","dev","--","--host"]
+# CMD ["npm","run","dev","--","--host"]
+
+RUN npm rub build
