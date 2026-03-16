@@ -14,9 +14,26 @@ const DevoteeDashboard = () => import("./views/DevoteeDashboard.vue");
 const FestivalSpecial = () => import("./views/FestivalSpecial.vue");
 const PlatformAdmin = () => import("./views/PlatformAdmin.vue");
 const PriestPartnerDashboard = () => import("./views/PriestPartnerDashboard.vue");
+const PriestEarnings = () => import("./views/PriestEarnings.vue");
 const ComponentsTest = () => import("./views/ComponentsTest.vue");
+const Login = () => import("./views/Login.vue");
+const Signup = () => import("./views/Signup.vue");
 
 const routes = [
+    // ─── Auth ─────────────────────────────────────────────────────────────────
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+        meta: { title: "Sign In | BookPriest" },
+    },
+    {
+        path: "/signup",
+        name: "Signup",
+        component: Signup,
+        meta: { title: "Create Account | BookPriest" },
+    },
+
     // ─── Public / Home ────────────────────────────────────────────────────────
     {
         path: "/",
@@ -85,6 +102,12 @@ const routes = [
         component: PriestPartnerDashboard,
         meta: { title: "Priest Dashboard | BookPriest" },
     },
+    {
+        path: "/priest/earnings",
+        name: "PriestEarnings",
+        component: PriestEarnings,
+        meta: { title: "Earnings | BookPriest" },
+    },
 
     // ─── Admin ────────────────────────────────────────────────────────────────
     {
@@ -110,7 +133,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    mode: "hash", // hash mode works without a server rewrite rule
+    mode: "history", // use history mode for clean URLs without #
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) return savedPosition;
         return { x: 0, y: 0 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard-container au-page-shell">
     <div class="bg-header-premium"></div>
     <main class="main-content">
       <!-- Profile Header -->
@@ -239,7 +239,8 @@ export default {
   background-color: var(--bg-main);
   min-height: 100vh;
   color: var(--text-main);
-  padding-bottom: 24px;
+  padding-bottom: 100px;
+  position: relative;
 }
 
 .bg-header-premium {
@@ -257,7 +258,7 @@ export default {
 .main-content {
   position: relative;
   z-index: 10;
-  padding: 24px 20px;
+  padding: 24px 20px 120px;
 }
 
 /* Profile */

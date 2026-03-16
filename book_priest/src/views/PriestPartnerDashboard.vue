@@ -114,7 +114,7 @@
                 </div>
               </div>
               <div class="request-time">
-                <p class="time-label">{{ request.timeLabel }}</p>
+                <p :class="['time-label', request.timeLabel === 'Today' ? 'text-primary' : '']">{{ request.timeLabel }}</p>
                 <p class="time-value">{{ request.time }}</p>
               </div>
             </div>
@@ -125,18 +125,14 @@
               <span>{{ request.location }}</span>
             </div>
             <div class="action-buttons">
-              <AUBUTTON
-                variant="primary"
-                label="Accept"
-                icon="bi bi-check"
-                class="w-100"
-              />
-              <AUBUTTON
-                variant="secondary"
-                label="Decline"
-                icon="bi bi-x"
-                class="w-100"
-              />
+              <button class="btn btn-primary">
+                <span class="material-symbols-outlined text-sm">check</span>
+                Accept
+              </button>
+              <button class="btn btn-secondary">
+                <span class="material-symbols-outlined text-sm">close</span>
+                Decline
+              </button>
             </div>
           </template>
         </AUCARD>
@@ -172,7 +168,7 @@
         :key="item.label"
         class="nav-item"
         :class="{ active: activeTab === item.id }"
-        @click="activeTab = item.id"
+        @click="navigateTo(item)"
       >
         <span
           class="material-symbols-outlined"
@@ -193,13 +189,11 @@
 </template>
 
 <script>
-import AUBUTTON from "../../../artiqui/src/components/AUBUTTON.vue";
 import AUCARD from "../../../artiqui/src/components/AUCARD.vue";
 
 export default {
   name: "PriestPartnerDashboard",
   components: {
-    AUBUTTON,
     AUCARD,
   },
   data() {
@@ -273,12 +267,20 @@ export default {
         },
       ],
       navItems: [
-        { id: "home", label: "Home", icon: "grid_view" },
-        { id: "calendar", label: "Calendar", icon: "calendar_month" },
-        { id: "earnings", label: "Earnings", icon: "payments" },
-        { id: "profile", label: "Profile", icon: "account_circle" },
+        { id: "home", label: "Home", icon: "grid_view", path: "/priest/dashboard" },
+        { id: "calendar", label: "Calendar", icon: "calendar_month", path: "/priest/calendar" },
+        { id: "earnings", label: "Earnings", icon: "payments", path: "/priest/earnings" },
+        { id: "profile", label: "Profile", icon: "account_circle", path: "/priest/profile" },
       ],
     };
+  },
+  methods: {
+    navigateTo(item) {
+      this.activeTab = item.id;
+      if (item.path && this.$route.path !== item.path) {
+        this.$router.push(item.path);
+      }
+    },
   },
 };
 </script>
@@ -620,6 +622,10 @@ export default {
   margin: 0;
 }
 
+.time-label.text-primary {
+  color: #f5993d;
+}
+
 .time-value {
   font-size: 12px;
   color: #9ca3af;
@@ -655,16 +661,34 @@ export default {
   gap: 8px;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn-primary {
   background-color: #f5993d;
   color: white;
+  box-shadow: 0 4px 6px -1px rgba(245, 153, 61, 0.2), 0 2px 4px -1px rgba(245, 153, 61, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #e0852c;
 }
 
 .btn-secondary {
   background-color: #f3f4f6;
   color: #4b5563;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.text-sm {
+  font-size: 16px !important;
 }
 
 /* Highlights */
@@ -730,36 +754,203 @@ export default {
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
   border-top: 1px solid #e5e7eb;
-  padding: 8px 24px 24px 24px;
+  padding: 8px 16px 24px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   z-index: 50;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
   background: none;
   border: none;
   color: #9ca3af;
   cursor: pointer;
+  padding: 6px 16px;
+  min-width: 72px;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+}
+
+.nav-item:active {
+  transform: scale(0.95);
 }
 
 .nav-item.active {
   color: #f5993d;
+  background: rgba(245, 153, 61, 0.08);
+}
+
+.nav-item .material-symbols-outlined {
+  font-size: 26px;
+  transition: all 0.2s ease;
+}
+
+.nav-item.active .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1;
 }
 
 .nav-label {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Responsive adjustments for screens less than 768px */
+@media (max-width: 768px) {
+  .bottom-nav {
+    padding: 6px 8px 16px 8px;
+    justify-content: space-around;
+  }
+
+  .nav-item {
+    padding: 4px 8px;
+    min-width: 56px;
+  }
+
+  .nav-item .material-symbols-outlined {
+    font-size: 22px;
+  }
+
+  .nav-label {
+    font-size: 10px;
+  }
+
+  .stats-grid {
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .request-card {
+    padding: 14px;
+  }
+
+  .action-buttons {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .highlight-card {
+    min-width: 160px;
+    padding: 14px;
+  }
+
+  .fab-container {
+    bottom: 88px;
+    right: 12px;
+  }
+
+  .fab {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon-large {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .username {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 12px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .stats-grid {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .calendar-strip {
+    padding: 12px;
+  }
+
+  .day-number {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .request-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .request-title {
+    font-size: 14px;
+  }
+
+  .request-devotee {
+    font-size: 12px;
+  }
+
+  .time-label {
+    font-size: 12px;
+  }
+
+  .time-value {
+    font-size: 11px;
+  }
+
+  .btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .btn .material-symbols-outlined {
+    font-size: 14px !important;
+  }
+
+  .highlight-card {
+    min-width: 140px;
+    padding: 12px;
+  }
+
+  .highlight-amount {
+    font-size: 16px;
+  }
 }
 
 /* FAB */

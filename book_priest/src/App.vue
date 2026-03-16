@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- Dev Navigation Overlay (only visible in development) -->
-    <div class="dev-nav" v-if="isDev">
+    <!-- <div class="dev-nav" v-if="isDev">
       <router-link
         v-for="route in devRoutes"
         :key="route.name"
@@ -12,7 +12,7 @@
       >
         {{ formatRouteName(route.name) }}
       </router-link>
-    </div>
+    </div> -->
 
     <!-- Main Router View -->
     <router-view />
@@ -26,6 +26,8 @@ export default {
     return {
       isDev: import.meta.env.DEV,
       devRoutes: [
+        { name: "Login", path: "/login" },
+        { name: "Signup", path: "/signup" },
         { name: "Home", path: "/" },
         { name: "ExploreAllPujas", path: "/pujas" },
         { name: "PujaDetails", path: "/pujas/1" },
@@ -35,6 +37,7 @@ export default {
         { name: "DevoteeDashboard", path: "/dashboard" },
         { name: "FestivalSpecial", path: "/festival-special" },
         { name: "PriestPartnerDashboard", path: "/priest/dashboard" },
+        { name: "PriestEarnings", path: "/priest/earnings" },
         { name: "PlatformAdmin", path: "/admin" },
         { name: "ComponentsTest", path: "/components-test" },
       ],
@@ -62,6 +65,7 @@ body {
 
 /* Dev Navigation Overlay */
 .dev-nav {
+
   position: fixed;
   bottom: 10px;
   right: 10px;

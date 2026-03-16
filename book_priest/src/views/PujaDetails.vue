@@ -1,5 +1,5 @@
 <template>
-  <div class="details-container">
+  <div class="details-container au-page-shell">
     <!-- Header -->
     <header class="header" :style="headerStyle">
       <div class="header-overlay"></div>
@@ -240,6 +240,7 @@ export default {
   min-height: 100vh;
   color: var(--text-main);
   padding-bottom: 24px;
+  position: relative;
 }
 
 /* Header */
@@ -290,7 +291,7 @@ export default {
   margin-top: -32px;
   position: relative;
   z-index: 20;
-  padding: 32px 20px;
+  padding: 32px 20px 140px;
   min-height: 500px;
   box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
 }

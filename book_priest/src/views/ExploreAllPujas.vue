@@ -1,5 +1,5 @@
 <template>
-  <div class="explore-container">
+  <div class="explore-container au-page-shell">
     <!-- Header -->
     <header class="header glass-effect">
       <div class="header-top">
@@ -170,7 +170,8 @@ export default {
   background-color: var(--bg-main);
   min-height: 100vh;
   color: var(--text-main);
-  padding-bottom: 24px;
+  padding-bottom: 100px;
+  position: relative;
 }
 
 /* Header */
@@ -269,7 +270,7 @@ export default {
 
 /* Content */
 .main-content {
-  padding: 20px 16px;
+  padding: 20px 16px 120px;
 }
 
 .puja-card-inner {
