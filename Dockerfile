@@ -7,12 +7,12 @@ COPY book_priest /app/book_priest
 
 # Build artiqui (shared UI lib)
 WORKDIR /app/artiqui
-RUN npm ci --frozen-lockfile --prefer-offline
+RUN npm install
 RUN npm run build
 
 # Build book_priest app
 WORKDIR /app/book_priest
-RUN npm ci --frozen-lockfile --prefer-offline
+RUN npm install
 RUN npm run build
 
 # Verify build output exists
