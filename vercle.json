@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "book_priest/.vercel/output/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/book_priest/.vercel/output/$1" }
+  ]
+}

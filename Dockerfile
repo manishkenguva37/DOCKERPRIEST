@@ -1,10 +1,10 @@
-# Use lightweight Node image
+# Use a stable Node version
 FROM node:18-alpine
 
-# Set working directory
+# Set base working directory
 WORKDIR /app
 
-# Copy both projects into container
+# Copy both projects into the container
 COPY artiqui /app/artiqui
 COPY book_priest /app/book_priest
 
@@ -25,13 +25,12 @@ RUN npm run build
 # -------------------------------
 # Prepare Vercel prebuilt output
 # -------------------------------
-# Vercel expects files in .vercel/output
 RUN mkdir -p .vercel/output \
     && cp -r dist/* .vercel/output/
 
-# Set environment for production
+# Set production environment
 ENV NODE_ENV=production
 
-# Optional: for local testing
+# Optional: for local dev
 # EXPOSE 5173
-# CMD ["npm", "run", "dev", "--", "--host"]
+# CMD ["npm","run","dev","--","--host"]

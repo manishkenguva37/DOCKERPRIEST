@@ -23,8 +23,8 @@ jobs:
       - name: Build Docker Image
         run: docker build -t book-priest .
 
-      # 3️⃣ Run Docker container to produce build and prebuilt output
-      - name: Run Docker container to build project
+      # 3️⃣ Run Docker container to generate prebuilt output
+      - name: Build project inside Docker
         run: docker run --rm -v ${{ github.workspace }}/book_priest:/app/book_priest book-priest
 
       # 4️⃣ Install Vercel CLI globally
