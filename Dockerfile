@@ -2,7 +2,7 @@ FROM node:alpine
 
 COPY artiqui /artiqui
 COPY book_priest /book_priest
-COPY stitch /stitch
+
 
 WORKDIR /artiqui
 RUN npm install
