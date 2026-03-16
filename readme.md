@@ -9,30 +9,39 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  IMAGE_NAME: ghcr.io/manishkenguva37/book_priest:latest
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Build Docker image
-      - name: Build Docker Image
-        run: docker build -t book-priest ./book_priest
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3️⃣ Install Vercel CLI globally
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME ./book_priest
+
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME
+
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # 4️⃣ Pull Vercel project settings
       - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
         working-directory: ./book_priest
 
-      # 5️⃣ Deploy to Vercel using the prebuilt Docker image
-      - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+      - name: Deploy to Vercel with Docker
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN --confirm --docker-image $IMAGE_NAME
         working-directory: ./book_priest
+
+
+        
