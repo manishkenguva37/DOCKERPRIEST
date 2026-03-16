@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
+      # 1️⃣ Checkout repo
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -23,15 +23,15 @@ jobs:
       - name: Build Docker Image
         run: docker build -t book-priest .
 
-      # 3️⃣ Run Docker container to generate prebuilt output
+      # 3️⃣ Run Docker container with volume mapping so .vercel/output exists on host
       - name: Build project inside Docker
         run: docker run --rm -v ${{ github.workspace }}/book_priest:/app/book_priest book-priest
 
-      # 4️⃣ Install Vercel CLI globally
+      # 4️⃣ Install Vercel CLI
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # 5️⃣ Deploy prebuilt to Vercel
-      - name: Deploy to Vercel (Prebuilt)
+      # 5️⃣ Deploy prebuilt
+      - name: Deploy to Vercel
         run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
         working-directory: ./book_priest
