@@ -22,28 +22,21 @@ jobs:
         run: docker build -t book-priest-builder .
 
       - name: Create container to extract artifacts from
-        id: create_container
-        run: |
-          CONTAINER_ID=$(docker create --name temp-builder book-priest-builder)
-          echo "CONTAINER_ID=$CONTAINER_ID" >> $GITHUB_OUTPUT
-
-      - name: Run build inside container (no volume needed for build)
-        run: |
-          docker start ${{ steps.create_container.outputs.CONTAINER_ID }}
-          docker exec ${{ steps.create_container.outputs.CONTAINER_ID }} sh -c "
-            cd /app/book_priest &&
-            npm run build
-          " || { echo "Build failed inside container"; exit 1; }
+        run: docker create --name temp-builder book-priest-builder
 
       - name: Extract dist/ from container to host
         run: |
-          mkdir -p .vercel/output
-          docker cp ${{ steps.create_container.outputs.CONTAINER_ID }}:/app/book_priest/dist/. .vercel/output/
-          ls -la .vercel/output || echo "Copy failed – nothing in output!"
+          # Vercel prebuilt format requires:
+          #   .vercel/output/config.json  (version: 3)
+          #   .vercel/output/static/      (your static files)
+          mkdir -p .vercel/output/static
+          echo '{"version":3}' > .vercel/output/config.json
+          docker cp temp-builder:/app/book_priest/dist/. .vercel/output/static/
+          ls -la .vercel/output/static || echo "Copy failed – nothing in output!"
 
       - name: Cleanup temporary container
         if: always()
-        run: docker rm -f ${{ steps.create_container.outputs.CONTAINER_ID }}
+        run: docker rm -f temp-builder
 
       - name: Debug output contents
         run: |
