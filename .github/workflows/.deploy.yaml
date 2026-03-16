@@ -1,4 +1,4 @@
-name: BUILD DOCKER IMAGES
+name: Build & Deploy Book Priest
 
 on:
   push:
@@ -9,28 +9,29 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  IMAGE_NAME: ghcr.io/manishkenguva37/book_priest:latest
 
 jobs:
-  docker-compose:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Docker Images
-        run: docker compose build
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME ./book_priest
+
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME
 
       - name: Install Vercel CLI
-        run: npm install --global vercel
+        run: npm install -g vercel
 
-      - name: Pull Vercel Settings
+      - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-
-      - name: Vercel Build
-        run: vercel build --prod --token=$VERCEL_TOKEN
         working-directory: ./book_priest
 
-      - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+      - name: Deploy to Vercel with Docker
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN --confirm --docker-image $IMAGE_NAME
         working-directory: ./book_priest
